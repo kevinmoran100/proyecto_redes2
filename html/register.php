@@ -28,7 +28,7 @@ if (isset($_POST['signup'])) {
 
 
         $stmts = $conn->prepare("INSERT INTO users(username,password) VALUES( ?, ?)");
-        $stmts->bind_param("sss", $uname, $password);
+        $stmts->bind_param("ss", $uname, $password);
         $res = $stmts->execute();//get result
         $stmts->close();
 
