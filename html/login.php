@@ -25,7 +25,7 @@ if (isset($_POST['btn-login'])) {
     $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
 
     $count = $res->num_rows;
-    if ($count == 1 && $username == $password) {
+    if ($count == 1 && $username == $upass) {
         $_SESSION['user'] = $row['id'];
         header("Location: index.php");
     } elseif ($count == 1) {
