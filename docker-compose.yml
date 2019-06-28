@@ -1,29 +1,28 @@
-version: "3"
- 
+version: '3'
 services:
-  miservicio_mysql:
+  mysql:
     image: mysql:5.7
+    entrypoint: ['/entrypoint.sh', '--character-set-server=utf8', '--collation-server=utf8_general_ci']
     environment:
-      - MYSQL_DATABASE=nombre
-      - MYSQL_ROOT_PASSWORD=claveroot
-      - MYSQL_USER=miusuario
-      - MYSQL_PASSWORD=mipassword
-    volumes:
-      # Montamos un volumen para MySQL para no perder los datos de bd
-      - ./volumenes/mysql:/var/lib/mysql
-    expose:
-      - 3306
+      MYSQL_ROOT_PASSWORD: pass
     ports:
       - 3306:3306
-   
-  miservicio_php:
-    image: php:7-apache
     volumes:
-      # Montamos nuestra web desde fuera en el directorio web del contenedor
-      - ./miweb/:/var/www/html
-    expose:
-      - 80
-    ports:
-      - 80:80
-    links: 
-      - miservicio_mysql
+      - ./data/:/docker-entrypoint-initdb.d
+      - persistent:/var/lib/mysql
+    networks:
+      - default
+
+  www:
+      build: .
+      ports:
+        - "80:80"
+      volumes:
+        - ./html:/var/www/html/
+      links:
+        - mysql
+      networks:
+        - default
+
+volumes:
+    persistent:
