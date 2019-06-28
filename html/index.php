@@ -82,7 +82,7 @@ $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
             echo "<table border = '1'> \n"; 
             echo "<tr><td>Nombre</td><td>E-Mail</td></tr> \n"; 
             while ($row = mysql_fetch_row($res2)){ 
-                echo ""<tr><td>$row[0]</td><td>$row[1]</td></tr> \n"; 
+                echo "<tr><td>$row[0]</td><td>$row[1]</td></tr> \n"; 
             } 
             echo "</table> \n"; 
             ?> 
