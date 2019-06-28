@@ -34,14 +34,9 @@ $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Website Name</a>
+            <a class="navbar-brand" href="#">Redes 2 Grupo No. 3</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">First Link</a></li>
-                <li><a href="#">Second Link</a></li>
-                <li><a href="#">Third Link</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
