@@ -13,7 +13,7 @@ if (isset($_POST['btn-login'])) {
     $username = $_POST['username'];
     $upass = $_POST['pass'];
 
-    $password = hash('sha256', $upass); // password hashing using SHA256
+    // $password = hash('sha256', $upass); // password hashing using SHA256
     $stmt = $conn->prepare("SELECT id, carnet FROM users WHERE carnet= ?");
     $stmt->bind_param("s", $username);
     /* execute query */

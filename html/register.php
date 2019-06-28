@@ -13,7 +13,7 @@ if (isset($_POST['signup'])) {
     $upass = trim($_POST['nombre']);
 
     // hash password with SHA256;
-    $password = hash('sha256', $upass);
+    // $password = hash('sha256', $upass);
 
     // check user exist or not
     $stmt = $conn->prepare("SELECT carnet FROM users WHERE carnet=?");
@@ -28,7 +28,7 @@ if (isset($_POST['signup'])) {
 
 
         $stmts = $conn->prepare("INSERT INTO users(carnet,nombre) VALUES( ?, ?)");
-        $stmts->bind_param("ss", $uname, $password);
+        $stmts->bind_param("ss", $uname, $upass);
         $res = $stmts->execute();//get result
         $stmts->close();
 
