@@ -10,13 +10,13 @@ include_once 'dbconnect.php';
 if (isset($_POST['signup'])) {
 
     $uname = trim($_POST['uname']); // get posted data and remove whitespace
-    $upass = trim($_POST['pass']);
+    $upass = trim($_POST['nombre']);
 
     // hash password with SHA256;
     $password = hash('sha256', $upass);
 
     // check user exist or not
-    $stmt = $conn->prepare("SELECT username FROM users WHERE username=?");
+    $stmt = $conn->prepare("SELECT carnet FROM users WHERE carnet=?");
     $stmt->bind_param("s", $uname);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -27,7 +27,7 @@ if (isset($_POST['signup'])) {
     if ($count == 0) { // if email is not found add user
 
 
-        $stmts = $conn->prepare("INSERT INTO users(username,password) VALUES( ?, ?)");
+        $stmts = $conn->prepare("INSERT INTO users(carnet,password) VALUES( ?, ?)");
         $stmts->bind_param("ss", $uname, $password);
         $res = $stmts->execute();//get result
         $stmts->close();
@@ -48,7 +48,7 @@ if (isset($_POST['signup'])) {
 
     } else {
         $errTyp = "warning";
-        $errMSG = "Username is already used";
+        $errMSG = "carnet is already used";
     }
 
 }
@@ -93,14 +93,14 @@ if (isset($_POST['signup'])) {
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" name="uname" class="form-control" placeholder="Enter Username" required/>
+                        <input type="text" name="uname" class="form-control" placeholder="Enter Carnet" required/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="password" name="pass" class="form-control" placeholder="Enter Password"
+                        <input type="text" name="nombre" class="form-control" placeholder="Enter Nombre"
                                required/>
                     </div>
                 </div>

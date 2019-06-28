@@ -10,12 +10,12 @@ if (isset($_SESSION['user'])) {
 }
 
 if (isset($_POST['btn-login'])) {
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $upass = $_POST['pass'];
 
     $password = hash('sha256', $upass); // password hashing using SHA256
-    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username= ?");
-    $stmt->bind_param("s", $email);
+    $stmt = $conn->prepare("SELECT id, carnet FROM users WHERE carnet= ?");
+    $stmt->bind_param("s", $username);
     /* execute query */
     $stmt->execute();
     //get result
@@ -25,7 +25,7 @@ if (isset($_POST['btn-login'])) {
     $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
 
     $count = $res->num_rows;
-    if ($count == 1 && $row['password'] == $password) {
+    if ($count == 1 && $username == $password) {
         $_SESSION['user'] = $row['id'];
         header("Location: index.php");
     } elseif ($count == 1) {
@@ -75,7 +75,7 @@ if (isset($_POST['btn-login'])) {
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                        <input type="text" name="email" class="form-control" placeholder="Username" required/>
+                        <input type="text" name="username" class="form-control" placeholder="Username" required/>
                     </div>
                 </div>
 
