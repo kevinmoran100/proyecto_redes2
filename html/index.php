@@ -80,10 +80,13 @@ $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
             // $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
             
             echo "<table border = '1'> \n"; 
-            echo "<tr><td>Nombre</td><td>E-Mail</td></tr> \n"; 
-            while ($row = mysql_fetch_row($res2)){ 
-                echo "<tr><td>$row[0]</td><td>$row[1]</td></tr> \n"; 
-            } 
+            echo "<tr><td>Carnet</td><td>Nombre</td></tr> \n"; 
+
+            for ($num_fila = $res2->num_rows - 1; $num_fila >= 0; $num_fila--) {
+                $res2->data_seek($num_fila);
+                $fila = $res2->fetch_assoc();
+                echo "<tr><td>.".$fila['carnet']."</td><td>".$fila['nombre']."</td></tr> \n"; 
+            }
             echo "</table> \n"; 
             ?> 
 
