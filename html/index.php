@@ -67,10 +67,7 @@ $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
 <div class="container">
     <!-- Jumbotron-->
     <div class="jumbotron">
-        <h1>Hello, <?php echo $userRow['username']; ?></h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at auctor est, in convallis eros. Nulla
-            facilisi. Donec ipsum nulla, hendrerit nec mauris vitae, lobortis egestas tortor. </p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        <h1>Hello, <?php echo $userRow['nombre']; ?></h1>
     </div>
 
     <div class="row">
@@ -78,16 +75,15 @@ $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
         <?php 
             $res2 = $conn->query("SELECT * FROM users");
             // $users = mysqli_fetch_array($res2, MYSQLI_ASSOC);
-            
-            echo "<table border = '1'> \n"; 
-            echo "<tr><td>Carnet</td><td>Nombre</td></tr> \n"; 
+            echo "<table class=\"table table-dark\"> \n"; 
+            echo "<thead><tr><th scope=\"col\">Carnet</th><th scope=\"col\">Nombre</th></tr></thead><tbody>\n"; 
 
             for ($num_fila = $res2->num_rows - 1; $num_fila >= 0; $num_fila--) {
                 $res2->data_seek($num_fila);
                 $fila = $res2->fetch_assoc();
-                echo "<tr><td>.".$fila['carnet']."</td><td>".$fila['nombre']."</td></tr> \n"; 
+                echo "<tr><td scope=\"row\">.".$fila['carnet']."</td><td>".$fila['nombre']."</td></tr> \n"; 
             }
-            echo "</table> \n"; 
+            echo "</tbody></table> \n"; 
             ?> 
 
         </div>
