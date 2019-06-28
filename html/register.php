@@ -27,7 +27,7 @@ if (isset($_POST['signup'])) {
     if ($count == 0) { // if email is not found add user
 
 
-        $stmts = $conn->prepare("INSERT INTO users(carnet,password) VALUES( ?, ?)");
+        $stmts = $conn->prepare("INSERT INTO users(carnet,nombre) VALUES( ?, ?)");
         $stmts->bind_param("ss", $uname, $password);
         $res = $stmts->execute();//get result
         $stmts->close();
